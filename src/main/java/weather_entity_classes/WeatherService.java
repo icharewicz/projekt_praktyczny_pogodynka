@@ -9,34 +9,32 @@ public class WeatherService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "service_id")
-    private int id;
+    private int serviceId;
 
     @Column(name = "service_url")
     private String url;
 
     public WeatherService() {}
 
-    public WeatherService(int id, String url) {
-        this.id = id;
+    public WeatherService(int serviceId, String url) {
+        this.serviceId = serviceId;
         this.url = url;
     }
 
     @Override
     public String toString() {
         return "WeatherService{" +
-                "id=" + id +
+                "serviceId=" + serviceId +
                 ", url='" + url + '\'' +
                 '}';
     }
 
     public int getId() {
-        return id;
+        return serviceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int serviceId) { this.serviceId = serviceId;
     }
-
     public String getUrl() {
         return url;
     }
