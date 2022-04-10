@@ -1,25 +1,8 @@
 package weather_entity_classes;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee", orphanRemoval = true)
-//    private Set<Tasks> tasks = new HashSet<>();
-
-//    @ManyToMany
-//    @JoinTable(name = "employee_project",
-//                joinColumns = { @JoinColumn(name="employee_id")},
-//    inverseJoinColumns = { @JoinColumn(name="project_id")})
-//    private Set<Project> projects = new HashSet<>();
-
-//    @ManyToOne
-//    @JoinTable(name = "employee_project",
-//                joinColumns = { @JoinColumn(name="employee_id")},
-//    inverseJoinColumns = { @JoinColumn(name="project_id")})
-//    private Set<Project> projects = new HashSet<>();
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
-
 
 @Entity
 @Table(name = "avg_measure")
@@ -49,7 +32,7 @@ public class AvgMeasure {
     public AvgMeasure() {
     }
 
-    public AvgMeasure(int avgMeasureId, int cityId, LocalDateTime date, double avgTemp, double avgHum) {
+    public AvgMeasure(int avgMeasureId, int cityId, LocalDate date, double avgTemp, double avgHum) {
         this.avgMeasureId = avgMeasureId;
         this.cityId = cityId;
         this.date = date;
@@ -103,11 +86,11 @@ public class AvgMeasure {
         this.cityId = cityId;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
