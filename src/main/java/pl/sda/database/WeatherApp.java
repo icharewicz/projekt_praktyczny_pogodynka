@@ -1,11 +1,15 @@
+package pl.sda.database;
+
 import org.json.JSONObject;
+import pl.sda.database.weather_entity_classes.Measures;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 
 public class WeatherApp {
@@ -39,6 +43,17 @@ public class WeatherApp {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter city: ");
         String city = scanner.nextLine();
+        System.out.println("Enter the data in format yyyy-MM-dd: ");
+        String date = scanner.nextLine();
+
+        //weryfikacja daty
+        if (date.isEmpty()){
+            LocalDate localDate = LocalDate.now();
+            LocalDate localDateDefault = localDate.plusDays(1);
+            date = localDateDefault.toString();
+        }
+
+        //System.out.println(date);
 
         String jsonContent = getContent(city);
         System.out.println(jsonContent);
@@ -53,6 +68,15 @@ public class WeatherApp {
         //System.out.println(object.getJSONObject("main").getDouble("temp")-273);
             System.out.println(s);
         }
+
+        Measures measures = new Measures();
+        MeasuresDAO measuresDAO = new MeasuresDAO();
+
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        measures.setTemperature((int)jsonObject.getJSONObject("main").getDouble("temp")-273);
+        measures.setHumidity(jsonObject.getJSONObject("main").getDouble("humidity"));
+
+        measuresDAO.add(measures);
 
         }
 

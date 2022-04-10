@@ -1,3 +1,5 @@
+package pl.sda.database;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
