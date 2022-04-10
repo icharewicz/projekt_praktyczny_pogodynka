@@ -1,10 +1,17 @@
 package weather_entity_classes;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cities")
 public class Cities {
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cities", orphanRemoval = true)
+    private Set<AvgMeasure> avgMeasureSet = new HashSet<>(); //??
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
