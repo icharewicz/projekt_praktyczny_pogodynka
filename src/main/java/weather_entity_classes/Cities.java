@@ -1,17 +1,14 @@
 package weather_entity_classes;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "cities")
 public class Cities {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cities", orphanRemoval = true)
-    private Set<AvgMeasure> avgMeasureSet = new HashSet<>(); //??
+    private Set<AvgMeasure> avgMeasureSet = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +32,19 @@ public class Cities {
                 "cityId=" + cityId +
                 ", city='" + city + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cities)) return false;
+        Cities cities = (Cities) o;
+        return getCityId() == cities.getCityId() && Objects.equals(avgMeasureSet, cities.avgMeasureSet) && Objects.equals(getCity(), cities.getCity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(avgMeasureSet, getCityId(), getCity());
     }
 
     public int getCityId() {
