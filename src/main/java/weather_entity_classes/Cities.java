@@ -10,6 +10,9 @@ public class Cities {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cities", orphanRemoval = true)
     private Set<AvgMeasure> avgMeasureSet = new HashSet<>();
 
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "cities", orphanRemoval = true)
+    private Set<Measures> measuresSet = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "city_id") // to samo co private int id czyli sql = java

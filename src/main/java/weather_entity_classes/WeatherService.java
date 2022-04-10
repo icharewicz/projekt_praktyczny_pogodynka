@@ -1,10 +1,18 @@
 package weather_entity_classes;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "weather_service")
 public class WeatherService {
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "weatherService", orphanRemoval = true)
+    @JoinColumn(name = "weather_service_id")
+    private Set <Measures> measures;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
