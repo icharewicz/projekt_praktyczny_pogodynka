@@ -1,4 +1,4 @@
-package weather_entity_classes;
+package pl.sda.database.weather_entity_classes;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,8 +22,8 @@ public class Measures {
     private int measuresId;
 
 
-    @Column(name = "weather_service_id")
-    private int weatherServiceId;
+//    @Column(name = "weather_service_id")
+//    private int weatherServiceId;
 
     @Column(name = "temperature")
     private int temperature;
@@ -31,8 +31,8 @@ public class Measures {
     @Column(name = "humidity")
     private double humidity;
 
-    @Column(name = "city_id")
-    private int cityId;
+//    @Column(name = "city_id")
+//    private int cityId;
 
     @Column(name = "date")
     private LocalDate date;
@@ -43,10 +43,10 @@ public class Measures {
     public Measures(WeatherService weatherService, int measuresId, int weatherServiceId, int temperature, double humidity, int cityId, LocalDate date) {
         this.weatherService = weatherService;
         this.measuresId = measuresId;
-        this.weatherServiceId = weatherServiceId;
+//        this.weatherServiceId = weatherServiceId;
         this.temperature = temperature;
         this.humidity = humidity;
-        this.cityId = cityId;
+//        this.cityId = cityId;
         this.date = date;
     }
 
@@ -55,10 +55,10 @@ public class Measures {
         return "Measures{" +
                 "weatherService=" + weatherService +
                 ", measuresId=" + measuresId +
-                ", weatherServiceId=" + weatherServiceId +
+                //", weatherServiceId=" + weatherServiceId +
                 ", temperature=" + temperature +
                 ", humidity=" + humidity +
-                ", cityId=" + cityId +
+                //", cityId=" + cityId +
                 ", date=" + date +
                 '}';
     }
@@ -79,13 +79,13 @@ public class Measures {
         this.measuresId = measuresId;
     }
 
-    public int getWeatherServiceId() {
-        return weatherServiceId;
-    }
-
-    public void setWeatherServiceId(int weatherServiceId) {
-        this.weatherServiceId = weatherServiceId;
-    }
+//    public int getWeatherServiceId() {
+//        return weatherServiceId;
+//    }
+//
+//    public void setWeatherServiceId(int weatherServiceId) {
+//        this.weatherServiceId = weatherServiceId;
+//    }
 
     public int getTemperature() {
         return temperature;
@@ -103,13 +103,13 @@ public class Measures {
         this.humidity = humidity;
     }
 
-    public int getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
-    }
+//    public int getCityId() {
+//        return cityId;
+//    }
+//
+//    public void setCityId(int cityId) {
+//        this.cityId = cityId;
+//    }
 
     public LocalDate getDate() {
         return date;
@@ -122,13 +122,13 @@ public class Measures {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Measures)) return false;
         Measures measures = (Measures) o;
-        return measuresId == measures.measuresId && weatherServiceId == measures.weatherServiceId && temperature == measures.temperature && Double.compare(measures.humidity, humidity) == 0 && cityId == measures.cityId && Objects.equals(weatherService, measures.weatherService) && Objects.equals(date, measures.date);
+        return getMeasuresId() == measures.getMeasuresId() && getTemperature() == measures.getTemperature() && Double.compare(measures.getHumidity(), getHumidity()) == 0 && Objects.equals(getWeatherService(), measures.getWeatherService()) && Objects.equals(cities, measures.cities) && Objects.equals(getDate(), measures.getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(weatherService, measuresId, weatherServiceId, temperature, humidity, cityId, date);
+        return Objects.hash(getWeatherService(), cities, getMeasuresId(), getTemperature(), getHumidity(), getDate());
     }
 }

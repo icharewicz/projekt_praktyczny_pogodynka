@@ -1,4 +1,4 @@
-package weather_entity_classes;
+package pl.sda.database.weather_entity_classes;
 
 import javax.persistence.*;
 import java.util.*;

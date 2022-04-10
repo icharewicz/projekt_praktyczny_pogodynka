@@ -1,4 +1,4 @@
-package weather_entity_classes;
+package pl.sda.database.weather_entity_classes;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,8 +17,8 @@ public class AvgMeasure {
     @Column (name = "avg_measure_id ")
     private int avgMeasureId;
 
-    @Column(name = "city_id")
-    private int cityId;
+//    @Column(name = "city_id")
+//    private int cityId;
 
     @Column(name = "date")
     private LocalDate date; // ??
@@ -34,7 +34,7 @@ public class AvgMeasure {
 
     public AvgMeasure(int avgMeasureId, int cityId, LocalDate date, double avgTemp, double avgHum) {
         this.avgMeasureId = avgMeasureId;
-        this.cityId = cityId;
+        //this.cityId = cityId;
         this.date = date;
         this.avgTemp = avgTemp;
         this.avgHum = avgHum;
@@ -44,7 +44,7 @@ public class AvgMeasure {
     public String toString() {
         return "AvgMeasure{" +
                 "avgMeasureId=" + avgMeasureId +
-                ", cityId=" + cityId +
+                //", cityId=" + cityId +
                 ", date=" + date +
                 ", avgTemp=" + avgTemp +
                 ", avgHum=" + avgHum +
@@ -56,18 +56,12 @@ public class AvgMeasure {
         if (this == o) return true;
         if (!(o instanceof AvgMeasure)) return false;
         AvgMeasure that = (AvgMeasure) o;
-        return getAvgMeasureId() == that.getAvgMeasureId() &&
-                getCityId() == that.getCityId() &&
-                Double.compare(that.getAvgTemp(), getAvgTemp()) == 0 &&
-                Double.compare(that.getAvgHum(), getAvgHum()) == 0 &&
-                Objects.equals(cities, that.cities) &&
-                Objects.equals(getDate(), that.getDate());
+        return getAvgMeasureId() == that.getAvgMeasureId() && Double.compare(that.getAvgTemp(), getAvgTemp()) == 0 && Double.compare(that.getAvgHum(), getAvgHum()) == 0 && Objects.equals(cities, that.cities) && Objects.equals(getDate(), that.getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cities, getAvgMeasureId(), getCityId(),
-                getDate(), getAvgTemp(), getAvgHum());
+        return Objects.hash(cities, getAvgMeasureId(), getDate(), getAvgTemp(), getAvgHum());
     }
 
     public int getAvgMeasureId() {
@@ -78,13 +72,13 @@ public class AvgMeasure {
         this.avgMeasureId = avgMeasureId;
     }
 
-    public int getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
-    }
+//    public int getCityId() {
+//        return cityId;
+//    }
+//
+//    public void setCityId(int cityId) {
+//        this.cityId = cityId;
+//    }
 
     public LocalDate getDate() {
         return date;

@@ -1,4 +1,4 @@
-package weather_entity_classes;
+package pl.sda.database.weather_entity_classes;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,10 +9,8 @@ public class WeatherService {
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "weatherService", orphanRemoval = true)
-    @JoinColumn(name = "weather_service_id")
+    //@JoinColumn(name = "weather_service_id")
     private Set <Measures> measures;
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
